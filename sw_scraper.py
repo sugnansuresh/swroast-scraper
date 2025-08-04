@@ -93,7 +93,8 @@ def save_last_date(date_str):
 def send_email(new_date):
     try:
         msg = EmailMessage()
-        msg["Subject"] = f"New Roast Drop: {new_date.strip().replace('\n', '').replace('\r', '')}"
+        clean_date = new_date.strip().replace('\n', '').replace('\r', '')
+        msg["Subject"] = f"New Roast Drop: {clean_date}"
         msg["From"] = SENDER_EMAIL
         msg["To"] = ", ".join(RECIPIENTS)
         msg.set_content(f"The roast date on swroasting.coffee has been updated to {new_date}.")
